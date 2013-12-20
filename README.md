@@ -69,6 +69,7 @@ var C = B.extend({
 		if ( name )  this.name = name.toUpperCase();
 	}
 });
+`
 
 # Tests
 console.log('---');
