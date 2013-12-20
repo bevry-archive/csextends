@@ -46,11 +46,32 @@ Add a backbone-like extend method onto your CoffeeScript classes, making it easy
 
 ## Usage
 
+### For JavaScript Users
+
+``` javascript
+// Import
+var SomeCoffeeScriptClass = require('some-coffee-script-module');
+
+// Add our super easy extend method to the CoffeeScript class
+SomeCoffeeScriptClass.extend = require('extendonclass').extendOnClass;
+
+// Extend the CoffeeScript class easily with JavaScript
+var MyJavaScriptClass = SomeCoffeeScriptClass.extend({
+	constructor: function(){
+		// do your thing
+		// if you wish to call super, you can do so via:
+		// this.__super__.constructor.apply(this, arguments);
+	}
+});
+```
+
+### For CoffeeScript Users
+
 ``` coffeescript
 # Import
 {extendOnClass} = require('extendonclass')
 
-# Fixtures
+# Define our CoffeeScript Class with our super easy extend method
 class A
 	name: 'default'
 
@@ -59,17 +80,21 @@ class A
 
 	@extend: extendOnClass
 
+# Go into JavaScript mode
 `
+// Extend our CoffeeScript Class easily with JavaScript adding our own property
 var B = A.extend({
 	name: 'unknown'
 });
 
+// Extend our JavaScript Class easily with JavaScript adding our own constructor
 var C = B.extend({
 	constructor: function (name) {
 		if ( name )  this.name = name.toUpperCase();
 	}
 });
 `
+# Exit JavaScript Mode
 
 # Tests
 console.log('---');
