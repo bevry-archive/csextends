@@ -67,56 +67,7 @@ var MyJavaScriptClass = SomeCoffeeScriptClass.extend({
 
 ### For CoffeeScript Users
 
-``` coffeescript
-# Import
-{extendOnClass} = require('extendonclass')
-
-# Define our CoffeeScript Class with our super easy extend method
-class A
-	name: 'default'
-
-	constructor: (name) ->
-		@name = name  if name
-
-	@extend: extendOnClass
-
-# Go into JavaScript mode
-`
-// Extend our CoffeeScript Class easily with JavaScript adding our own property
-var B = A.extend({
-	name: 'unknown'
-});
-
-// Extend our JavaScript Class easily with JavaScript adding our own constructor
-var C = B.extend({
-	constructor: function (name) {
-		if ( name )  this.name = name.toUpperCase();
-	}
-});
-`
-# Exit JavaScript Mode
-
-# Tests
-console.log('---');
-
-var a = new A();
-console.log(a.name)  // 'default'
-
-var aa = new A('bob');
-console.log(aa.name)  // 'bob'
-
-var b = new B();
-console.log(b.name)  // 'unknown'
-
-var bb = new B('bob');
-console.log(bb.name)  // 'bob'
-
-var c = new C();
-console.log(c.name)  // 'unknown'
-
-var cc = new C('bob');
-console.log(cc.name)  // 'BOB'
-```
+[View the interactive JSFiddle](http://jsfiddle.net/balupton/k9buB/)
 
 
 <!-- HISTORY/ -->
