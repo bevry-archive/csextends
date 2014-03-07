@@ -22,6 +22,14 @@ var C = B.extend({
 		if ( name )  this.name = name.toUpperCase();
 	}
 });
+
+var D = A.extend({
+	constructor: function (name) {
+		D.__super__.constructor.apply(this, arguments);
+
+		this.name = this.name.toUpperCase();
+	}
+});
 `
 
 # Tests
@@ -50,3 +58,7 @@ joe.describe 'extendonclass', (describe, it) ->
 	it 'should apply overwritten inherited constructor correctly', ->
 		cc = new C('bob')
 		expect(cc.name).to.eql('BOB')
+
+	it 'should call parent constructor correctly', ->
+		d = new D('bob')
+		expect(d.name).to.eql('BOB')
