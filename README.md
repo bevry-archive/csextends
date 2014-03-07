@@ -60,7 +60,7 @@ var MyJavaScriptClass = SomeCoffeeScriptClass.extend({
 	constructor: function(){
 		// do your thing
 		// if you wish to call super, you can do so via:
-		// this.__super__.constructor.apply(this, arguments);
+		// MyJavaScriptClass.__super__.constructor.apply(this, arguments);
 	}
 });
 ```
