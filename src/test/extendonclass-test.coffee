@@ -12,20 +12,24 @@ class A
 
 	@extend: extendOnClass
 
-`
-var B = A.extend({
-	name: 'unknown'
-});
-
-var C = B.extend({
-	constructor: function (name) {
-		if ( name )  this.name = name.toUpperCase();
-	}
-});
-`
+B = C = D = null
 
 # Tests
 joe.describe 'extendonclass', (describe, it) ->
+	it 'should create the subclasses correctly', ->
+		B = A.extend({
+			name: 'unknown'
+		})
+
+		C = B.extend({
+			constructor: (name) ->
+				this.name = name.toUpperCase()  if name
+				return
+		})
+
+		D = A.extend()
+
+		return
 
 	it 'should apply default attributes correctly', ->
 		a = new A()
@@ -38,6 +42,10 @@ joe.describe 'extendonclass', (describe, it) ->
 	it 'should apply overwritten attributes correctly', ->
 		b = new B()
 		expect(b.name).to.eql('unknown')
+
+	it 'should work with no extend prototype', ->
+		d = new D()
+		expect(d.name).to.eql('default')
 
 	it 'should apply inherited constructor correctly', ->
 		bb = new B('bob')
