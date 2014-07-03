@@ -49,5 +49,8 @@
   "main": "./out/lib/csextends.js",
   "scripts": {
     "test": "node out/test/csextends-test.js"
+  },
+  "cakeConfiguration": {
+    "COFFEE_SRC_PATH": "src"
   }
 }
