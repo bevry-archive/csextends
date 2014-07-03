@@ -1,5 +1,8 @@
 # History
 
+## v1.0.3 July 3, 2014
+- Usage example in readme is now external
+
 ## v1.0.2 July 3, 2014
 - Renamed from `extendonclass` to `csextends`
 - Added the ability to specify the parent class via an argument

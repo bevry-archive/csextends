@@ -28,6 +28,11 @@ Use the Coffee-Script extends keyword outside of Coffee-Script. Useful for easil
 <!-- /DESCRIPTION -->
 
 
+## Usage
+
+[Check out the interactive code snippet for usage here.](http://jsfiddle.net/k9buB/)
+
+
 <!-- INSTALL/ -->
 
 ## Install
@@ -39,71 +44,13 @@ Use the Coffee-Script extends keyword outside of Coffee-Script. Useful for easil
 ### [Browserify](http://browserify.org/)
 - Use: `require('csextends')`
 - Install: `npm install --save csextends`
-- CDN URL: `//wzrd.in/bundle/csextends@1.0.2`
+- CDN URL: `//wzrd.in/bundle/csextends@1.0.3`
 
 ### [Ender](http://ender.jit.su/)
 - Use: `require('csextends')`
 - Install: `ender add csextends`
 
 <!-- /INSTALL -->
-
-
-## Usage
-
-``` javascript
-// Create a Class
-var Person = function(name){
-	this.name = name
-}
-Person.prototype.name = 'Unknown'
-Person.prototype.hello = function(){
-	console.log('Hello '+this.name+'!')
-}
-
-// Extend the class
-var Child = require('csextends')(Person, {
-	constructor: function(name, mother, father){
-		this.name = name
-		this.mother = mother
-		this.father = father
-	},
-	mother: null,
-	father: null,
-	heyYaAll: function(){
-		this.hello()
-		this.mother.hello()
-		this.father.hello()
-	}
-})
-
-// Create some people
-var eve = new Person('Eve')
-var adam = new Person('Adam')
-var me = new Child('me', eve, adam)
-me.heyYaAll()
-// Hello me!
-// Hello Eve!
-// Hello Adam!
-
-// Is me still a person
-console.log(me instanceof Person)  // true
-
-
-// Now let's make this easier for people in the future
-Person.prototype.subclass = require('csextends')
-// Now, instead of doing:
-//   var Child = require('csextends')(Person, extensions)
-// We can now do:
-//   var Child = Person.subclass(extensions)
-// Which is very useful for module consumers.
-
-// If you use CoffeeScript, you can accomplish the above by doing:
-// class Person
-//   @subclass: require('csextends')
-// Then your javascript consumers can do:
-//   var Child = Person.subclass(extensions)
-// Just as before, which is really good for JavaScript users.
-```
 
 
 <!-- HISTORY/ -->

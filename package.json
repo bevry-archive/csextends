@@ -1,7 +1,7 @@
 {
   "title": "Coffee-Script Extends",
   "name": "csextends",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Use the Coffee-Script extends keyword outside of Coffee-Script. Useful for easily extending existing existing classes, e.g. `require('csextends')(klass, extensions)`, and for providing your module consumers with an easy way to extend your classes, i.e. `Backbone.Model.extend(extensions)`.",
   "license": {
     "type": "MIT"
