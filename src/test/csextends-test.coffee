@@ -1,7 +1,7 @@
 # Import
 {expect, assert} = require('chai')
 joe = require('joe')
-{extendOnClass} = require('../../')
+csextends = require('../../')
 
 # Fixtures
 class A
@@ -10,26 +10,40 @@ class A
 	constructor: (name) ->
 		@name = name  if name
 
-	@extend: extendOnClass
+	@subclass: csextends
 
 B = C = D = null
 
 # Tests
-joe.describe 'extendonclass', (describe, it) ->
+joe.describe 'csextends', (describe, it) ->
 	it 'should create the subclasses correctly', ->
-		B = A.extend({
+		B = A.subclass({
 			name: 'unknown'
 		})
 
-		C = B.extend({
+		C = B.subclass({
 			constructor: (name) ->
 				this.name = name.toUpperCase()  if name
 				return
 		})
 
-		D = A.extend()
+		D = A.subclass()
 
 		return
+
+	it 'should maintain instanceof abilities', ->
+		a = new A()
+		expect(a).to.be.an.instanceof(A)
+		b = new B()
+		expect(b).to.be.an.instanceof(A)
+		expect(b).to.be.an.instanceof(B)
+		c = new C()
+		expect(c).to.be.an.instanceof(A)
+		expect(c).to.be.an.instanceof(B)
+		expect(c).to.be.an.instanceof(C)
+		d = new D()
+		expect(d).to.be.an.instanceof(A)
+		expect(d).to.be.an.instanceof(D)
 
 	it 'should apply default attributes correctly', ->
 		a = new A()

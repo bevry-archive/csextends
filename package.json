@@ -1,8 +1,8 @@
 {
-  "title": "Extend on Class",
-  "name": "extendonclass",
-  "version": "1.0.1",
-  "description": "Add a backbone-like extend method onto your CoffeeScript classes, making it easy for JavaScript users to extend your CoffeeScript classes",
+  "title": "Coffee-Script Extends",
+  "name": "csextends",
+  "version": "1.0.2",
+  "description": "Use the Coffee-Script extends keyword outside of Coffee-Script. Useful for easily extending existing existing classes, e.g. `require('csextends')(klass, extensions)`, and for providing your module consumers with an easy way to extend your classes, i.e. `Backbone.Model.extend(extensions)`.",
   "license": {
     "type": "MIT"
   },
@@ -28,26 +28,24 @@
   "maintainers": [
     "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
   ],
-  "contributors": [
-    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
-  ],
+  "contributors": [],
   "bugs": {
-    "url": "https://github.com/bevry/extendonclass/issues"
+    "url": "https://github.com/bevry/csextends/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bevry/extendonclass.git"
+    "url": "https://github.com/bevry/csextends.git"
   },
-  "homepage": "https://github.com/bevry/extendonclass",
+  "homepage": "https://github.com/bevry/csextends",
   "devDependencies": {
     "coffee-script": "~1.7.1",
-    "joe": "~1.4.0",
+    "joe": "~1.5.0",
     "joe-reporter-console": "~1.2.1",
     "chai": "~1.9.1",
     "projectz": "~0.3.11"
   },
-  "main": "./out/lib/extendonclass.js",
+  "main": "./out/lib/csextends.js",
   "scripts": {
-    "test": "node out/test/extendonclass-test.js"
+    "test": "node out/test/csextends-test.js"
   }
 }

@@ -1,17 +1,17 @@
 
 <!-- TITLE/ -->
 
-# Extend on Class
+# Coffee-Script Extends
 
 <!-- /TITLE -->
 
 
 <!-- BADGES/ -->
 
-[![Build Status](http://img.shields.io/travis-ci/bevry/extendonclass.png?branch=master)](http://travis-ci.org/bevry/extendonclass "Check this project's build status on TravisCI")
-[![NPM version](http://badge.fury.io/js/extendonclass.png)](https://npmjs.org/package/extendonclass "View this project on NPM")
-[![Dependency Status](https://david-dm.org/bevry/extendonclass.png?theme=shields.io)](https://david-dm.org/bevry/extendonclass)
-[![Development Dependency Status](https://david-dm.org/bevry/extendonclass/dev-status.png?theme=shields.io)](https://david-dm.org/bevry/extendonclass#info=devDependencies)<br/>
+[![Build Status](http://img.shields.io/travis-ci/bevry/csextends.png?branch=master)](http://travis-ci.org/bevry/csextends "Check this project's build status on TravisCI")
+[![NPM version](http://badge.fury.io/js/csextends.png)](https://npmjs.org/package/csextends "View this project on NPM")
+[![Dependency Status](https://david-dm.org/bevry/csextends.png?theme=shields.io)](https://david-dm.org/bevry/csextends)
+[![Development Dependency Status](https://david-dm.org/bevry/csextends/dev-status.png?theme=shields.io)](https://david-dm.org/bevry/csextends#info=devDependencies)<br/>
 [![Gittip donate button](http://img.shields.io/gittip/bevry.png)](https://www.gittip.com/bevry/ "Donate weekly to this project using Gittip")
 [![Flattr donate button](http://img.shields.io/flattr/donate.png?color=yellow)](http://flattr.com/thing/344188/balupton-on-Flattr "Donate monthly to this project using Flattr")
 [![PayPayl donate button](http://img.shields.io/paypal/donate.png?color=yellow)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QB8GQPZAH84N6 "Donate once-off to this project using Paypal")
@@ -23,7 +23,7 @@
 
 <!-- DESCRIPTION/ -->
 
-Add a backbone-like extend method onto your CoffeeScript classes, making it easy for JavaScript users to extend your CoffeeScript classes
+Use the Coffee-Script extends keyword outside of Coffee-Script. Useful for easily extending existing existing classes, e.g. `require('csextends')(klass, extensions)`, and for providing your module consumers with an easy way to extend your classes, i.e. `Backbone.Model.extend(extensions)`.
 
 <!-- /DESCRIPTION -->
 
@@ -33,51 +33,83 @@ Add a backbone-like extend method onto your CoffeeScript classes, making it easy
 ## Install
 
 ### [NPM](http://npmjs.org/)
-- Use: `require('extendonclass')`
-- Install: `npm install --save extendonclass`
+- Use: `require('csextends')`
+- Install: `npm install --save csextends`
 
 ### [Browserify](http://browserify.org/)
-- Use: `require('extendonclass')`
-- Install: `npm install --save extendonclass`
-- CDN URL: `//wzrd.in/bundle/extendonclass@1.0.1`
+- Use: `require('csextends')`
+- Install: `npm install --save csextends`
+- CDN URL: `//wzrd.in/bundle/csextends@1.0.2`
 
 ### [Ender](http://ender.jit.su/)
-- Use: `require('extendonclass')`
-- Install: `ender add extendonclass`
+- Use: `require('csextends')`
+- Install: `ender add csextends`
 
 <!-- /INSTALL -->
 
 
 ## Usage
 
-### For JavaScript Users
-
 ``` javascript
-// Import
-var SomeCoffeeScriptClass = require('some-coffee-script-module');
+// Create a Class
+var Person = function(name){
+	this.name = name
+}
+Person.prototype.name = 'Unknown'
+Person.prototype.hello = function(){
+	console.log('Hello '+this.name+'!')
+}
 
-// Add our super easy extend method to the CoffeeScript class
-SomeCoffeeScriptClass.extend = require('extendonclass').extendOnClass;
-
-// Extend the CoffeeScript class easily with JavaScript
-var MyJavaScriptClass = SomeCoffeeScriptClass.extend({
-	constructor: function(){
-		// do your thing
-		// if you wish to call super, you can do so via:
-		// this.__super__.constructor.apply(this, arguments);
+// Extend the class
+var Child = require('csextends')(Person, {
+	constructor: function(name, mother, father){
+		this.name = name
+		this.mother = mother
+		this.father = father
+	},
+	mother: null,
+	father: null,
+	heyYaAll: function(){
+		this.hello()
+		this.mother.hello()
+		this.father.hello()
 	}
-});
+})
+
+// Create some people
+var eve = new Person('Eve')
+var adam = new Person('Adam')
+var me = new Child('me', eve, adam)
+me.heyYaAll()
+// Hello me!
+// Hello Eve!
+// Hello Adam!
+
+// Is me still a person
+console.log(me instanceof Person)  // true
+
+
+// Now let's make this easier for people in the future
+Person.prototype.subclass = require('csextends')
+// Now, instead of doing:
+//   var Child = require('csextends')(Person, extensions)
+// We can now do:
+//   var Child = Person.subclass(extensions)
+// Which is very useful for module consumers.
+
+// If you use CoffeeScript, you can accomplish the above by doing:
+// class Person
+//   @subclass: require('csextends')
+// Then your javascript consumers can do:
+//   var Child = Person.subclass(extensions)
+// Just as before, which is really good for JavaScript users.
 ```
-
-### For CoffeeScript Users
-
-[View the interactive JSFiddle](http://jsfiddle.net/balupton/k9buB/)
 
 
 <!-- HISTORY/ -->
 
 ## History
-[Discover the change history by heading on over to the `HISTORY.md` file.](https://github.com/bevry/extendonclass/blob/master/HISTORY.md#files)
+[Discover the change history by heading on over to the `HISTORY.md` file.](https://github.com/bevry/csextends/blob/master/HISTORY.md#files)
 
 <!-- /HISTORY -->
 
@@ -86,7 +118,7 @@ var MyJavaScriptClass = SomeCoffeeScriptClass.extend({
 
 ## Contribute
 
-[Discover how you can contribute by heading on over to the `CONTRIBUTING.md` file.](https://github.com/bevry/extendonclass/blob/master/CONTRIBUTING.md#files)
+[Discover how you can contribute by heading on over to the `CONTRIBUTING.md` file.](https://github.com/bevry/csextends/blob/master/CONTRIBUTING.md#files)
 
 <!-- /CONTRIBUTE -->
 
@@ -113,11 +145,8 @@ No sponsors yet! Will you be the first?
 
 ### Contributors
 
-These amazing people have contributed code to this project:
-
-- [Benjamin Lupton](https://github.com/balupton) <b@lupton.cc> — [view contributions](https://github.com/bevry/extendonclass/commits?author=balupton)
-
-[Become a contributor!](https://github.com/bevry/extendonclass/blob/master/CONTRIBUTING.md#files)
+No contributors yet! Will you be the first?
+[Discover how you can contribute by heading on over to the `CONTRIBUTING.md` file.](https://github.com/bevry/csextends/blob/master/CONTRIBUTING.md#files)
 
 <!-- /BACKERS -->
 
