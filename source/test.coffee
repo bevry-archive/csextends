@@ -1,7 +1,7 @@
 # Import
 {expect, assert} = require('chai')
 joe = require('joe')
-csextends = require('../../')
+csextends = require('../')
 
 # Fixtures
 class A
