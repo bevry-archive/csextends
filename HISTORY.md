@@ -1,5 +1,8 @@
 # History
 
+## v1.1.0 2017 April 25
+- Updated base files
+
 ## v1.0.3 2014 July 3
 - Usage example in readme is now external
 
