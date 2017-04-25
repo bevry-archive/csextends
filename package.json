@@ -82,8 +82,7 @@
   "browser": "es5/index.js",
   "dependencies": {},
   "devDependencies": {
-    "assert-helpers": "^4.5.0",
-    "chai": "~1.9.1",
+    "chai": "^3.5.0",
     "coffee-script": "^1.12.5",
     "coffeelint": "^1.16.0",
     "joe": "^2.0.2",
