@@ -1,5 +1,8 @@
 # History
 
+## v1.1.1 2017 April 25
+- Fixed coffee-script dependency missing from v1.1.0
+
 ## v1.1.0 2017 April 25
 - Updated base files
 
