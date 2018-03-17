@@ -81,7 +81,7 @@
   "main": "es5/index.js",
   "browser": "es5/index.js",
   "dependencies": {
-    "coffee-script": "^1.12.5"
+    "coffeescript": "^2.2.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
