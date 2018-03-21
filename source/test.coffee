@@ -1,5 +1,5 @@
 # Import
-{expect, assert} = require('chai')
+{equal} = require('assert-helpers')
 joe = require('joe')
 csextends = require('../')
 
@@ -33,42 +33,42 @@ joe.describe 'csextends', (describe, it) ->
 
 	it 'should maintain instanceof abilities', ->
 		a = new A()
-		expect(a).to.be.an.instanceof(A)
+		equal(a instanceof A, true)
 		b = new B()
-		expect(b).to.be.an.instanceof(A)
-		expect(b).to.be.an.instanceof(B)
+		equal(b instanceof A, true)
+		equal(b instanceof B, true)
 		c = new C()
-		expect(c).to.be.an.instanceof(A)
-		expect(c).to.be.an.instanceof(B)
-		expect(c).to.be.an.instanceof(C)
+		equal(c instanceof A, true)
+		equal(c instanceof B, true)
+		equal(c instanceof C, true)
 		d = new D()
-		expect(d).to.be.an.instanceof(A)
-		expect(d).to.be.an.instanceof(D)
+		equal(d instanceof A, true)
+		equal(d instanceof D, true)
 
 	it 'should apply default attributes correctly', ->
 		a = new A()
-		expect(a.name).to.eql('default')
+		equal(a.name, 'default')
 
 	it 'should apply default constructor correctly', ->
 		aa = new A('bob')
-		expect(aa.name).to.eql('bob')
+		equal(aa.name, 'bob')
 
 	it 'should apply overwritten attributes correctly', ->
 		b = new B()
-		expect(b.name).to.eql('unknown')
+		equal(b.name, 'unknown')
 
 	it 'should work with no extend prototype', ->
 		d = new D()
-		expect(d.name).to.eql('default')
+		equal(d.name, 'default')
 
 	it 'should apply inherited constructor correctly', ->
 		bb = new B('bob')
-		expect(bb.name).to.eql('bob')
+		equal(bb.name, 'bob')
 
 	it 'should apply inherited overwritten attributes correctly', ->
 		c = new C()
-		expect(c.name).to.eql('unknown')
+		equal(c.name, 'unknown')
 
 	it 'should apply overwritten inherited constructor correctly', ->
 		cc = new C('bob')
-		expect(cc.name).to.eql('BOB')
+		equal(cc.name, 'BOB')
